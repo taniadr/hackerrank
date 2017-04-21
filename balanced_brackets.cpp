@@ -1,5 +1,9 @@
-//Balanced Brackets
-//by saikiran9194
+/*Problem: Stacks: Balanced Brackets 
+Level: Medium
+Link: https://www.hackerrank.com/challenges/ctci-balanced-brackets
+Coder: taniadr // https://github.com/taniadr/hackerrank
+*/
+
 #include <map>
 #include <set>
 #include <list>
@@ -21,73 +25,65 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
-bool pushitout (string str)
-{
-	
-	stack<char> p1;
-	bool flag;
-	char a1;
-
-	if (str.length()%2 != 0){
-		cout<<"NO\n";
-	}	
-		else
-		{
-			for (int i = 0;  i < str.length(); i++ )
-			{
-				if(str[i] == '(' || str[i] == '[' || str[i] == '{'){ //if it is an open bracket
-					p1.push(str[i]);
-				}
-				
-				//if closing bracket, pop bracket and compare if its a pair
-				if (str[i] == ')' || str[i] == ']' || str[i] == '}')
-				{
-						//if stack becomes empty in between then also its not balanced
-					if(p1.empty())
-					{
-						return false;
-					}
-					//take the top to compare now if it is the openning of the closing bracket found
-					a1 = p1.top();
-					
-					if (str[i] == ')' && a1 == '('){
-						p1.pop();
-					}
-					if (str[i] == '}' && a1 == '{'){
-						p1.pop();
-					}
-					if (str[i] == ']' && a1 == '['){
-						p1.pop();
-					}
-					
-				}
-			
+bool is_balanced(string expression) {
+    bool result = true;
+    stack<char> pilha;
+    pilha.push(expression[0]);
+    for (int i=1; i<expression.length(); i++){
+    	
+    	if (expression[i] == '{' || expression[i] == '(' || expression[i] == '['){
+    		pilha.push(expression[i]);
 		}
-			if (str.length() > 0 && p1.empty())
-				flag = true;
-			else
-				flag = false;
+		else{
+			if (expression[i] == '}'){
+				 if (!pilha.empty() && pilha.top() == '{')
+				 {
+				 	pilha.pop();
+				 }
+				 else{
+				 	result = false;
+				 }
+			}
+			if (expression[i] == ')'){
+				 if (!pilha.empty() && pilha.top() == '(')
+				 {
+				 	pilha.pop();
+				 }
+				 else{
+				 	result = false;
+				 }
+			}			
+			if (expression[i] == ']'){
+				 if (!pilha.empty() && pilha.top() == '[')
+				 {
+				 	pilha.pop();
+				 }
+				 else{
+				 	result = false;
+				 }
+			}			
 		}
-		
-		return flag;
+	}
+    if (!pilha.empty())
+    	result = false;
+    	
+    return result;
 }
 
 int main(){
     int t;
     cin >> t;
     for(int a0 = 0; a0 < t; a0++){
-        string s;
-        cin >> s;
-        if (pushitout(s) == true){
-        	cout<<"YES\n";
-		}
-		else{
-			cout<<"NO\n";
-		}
-        s.clear();
+        string expression;
+        cin >> expression;
+        bool answer = is_balanced(expression);
+        if(answer)
+            cout << "YES\n";
+        else cout << "NO\n";
     }
     return 0;
 }

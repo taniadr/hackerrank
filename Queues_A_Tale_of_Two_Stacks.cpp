@@ -1,3 +1,9 @@
+/*Problem: Stacks: Queues: A Tale of Two Stacks
+Level: Medium
+Link: https://www.hackerrank.com/challenges/ctci-queue-using-two-stacks
+Coder: taniadr // https://github.com/taniadr/hackerrank
+*/
+
 #include <cmath>
 #include <cstdio>
 #include <vector>
