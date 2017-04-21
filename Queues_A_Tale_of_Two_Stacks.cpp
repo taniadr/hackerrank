@@ -10,37 +10,32 @@ using namespace std;
 class MyQueue {
   
     public:
-        stack<int> stackone, stacktwo; 
-        int aux;
+        stack<int> stack_em_ordem, stack_reversa; 
+        int first;
+        
         void push(int x) {
-            stackone.push(x);
+			stack_em_ordem.push(x);
         }
 
-        void pop() {
-            while(!stackone.empty()){
-            	stacktwo.push(stackone.top());
-				stackone.pop();
+        void pop() {			
+			if (stack_reversa.empty()){			
+         	   while(!stack_em_ordem.empty()){
+            		stack_reversa.push(stack_em_ordem.top());
+					stack_em_ordem.pop();
+				}
+			}//pilha em ordem is empty. só inserimos na reversa quando acabar os elementos da reversa!!	
+			stack_reversa.pop(); 
+    	}
+    	
+		int front() {	
+			if (stack_reversa.empty()){			
+         	   while(!stack_em_ordem.empty()){
+            		stack_reversa.push(stack_em_ordem.top());
+					stack_em_ordem.pop();
+				}
 			}
-			stacktwo.pop();	//retira
-			while(!stacktwo.empty())
-			{
-				stackone.push(stacktwo.top());
-				stacktwo.pop();
-			}
-        }
-
-        int front() {
-         while(!stackone.empty()){
-            	stacktwo.push(stackone.top());
-				stackone.pop();
-			}
-			aux = stacktwo.top();
-			while(!stacktwo.empty())
-			{
-				stackone.push(stacktwo.top());
-				stacktwo.pop();
-			}
-        	return aux;
+			first = stack_reversa.top();
+        	return first;
 		}
 };
 
@@ -60,7 +55,6 @@ int main() {
         }
         else cout << q1.front() << endl;
     }
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
     return 0;
 }
 
