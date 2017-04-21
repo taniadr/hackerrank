@@ -3,7 +3,6 @@ Level: Easy
 Link: https://www.hackerrank.com/challenges/ctci-fibonacci-numbers
 Coder: taniadr // https://github.com/taniadr/hackerrank
 */
-
 #include <iostream>
 
 using namespace std;
