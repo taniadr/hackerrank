@@ -1,3 +1,31 @@
+
+Skip to content
+This repository
+
+    Pull requests
+    Issues
+    Gist
+
+    @taniadr
+
+1
+0
+
+    0
+
+taniadr/hackerrank
+Code
+Issues 0
+Pull requests 0
+Projects 0
+Wiki
+Pulse
+Graphs
+Settings
+hackerrank/LinkedLists_Detect_a_Cycle.cpp
+9a019ed 3 days ago
+tania Solved: LinkedLists - detect a cycle (it was something so simple.... …
+60 lines (47 sloc) 1.17 KB
 /*Problem: Linked Lists: Detect a Cycle 
 Level: Easy
 Link: https://www.hackerrank.com/challenges/ctci-linked-list-cycle
@@ -57,3 +85,4 @@ int has_cycle(Node* head) {
     }    
     return 0;
 }
+
