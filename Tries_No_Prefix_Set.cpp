@@ -1,5 +1,5 @@
-// Problem: Tries: Contacts
-// Link: https://www.hackerrank.com/challenges/ctci-contacts
+// Problem: Tries: No Prefix Set
+// Link: https://www.hackerrank.com/challenges/no-prefix-set
 // Level: Hard
 // Coder: taniadr
 // Runtime Complexity: search in O(M) = O(21) worst case
@@ -33,7 +33,7 @@ using namespace std;
 #define ALPHABET_SIZE (26)
 #define MAXV (100000)
 #define CHAR_TO_INDEX(c) ((int)c - (int)'a')// Converts key current character into index
-#define STRSIZE (22)
+#define STRSIZE (60)
 
 struct TrieNode {
     
@@ -88,10 +88,10 @@ void insertTrie(struct TrieNode *root, const char *key){
 
 bool search(struct TrieNode *root, const char *key){
 	
-	
+	bool stop = false;
 	int level;
 	int tam = strlen(key);
-	int index;
+	int index, pos_parou;
 	struct TrieNode *pCur = root;
 	
 	for (level=0; level < tam; level++){
@@ -103,37 +103,33 @@ bool search(struct TrieNode *root, const char *key){
 		}
 		pCur = pCur->children[index];
 	}
-	cout<< pCur->count<<"\n";
-	return (pCur != NULL && level == tam);	//considera substring assim!
+	if (pCur->count > 1)
+		cout<<"BAD SET\n"<<key<<endl;
+	//return (pCur != NULL && level == tam);	//considera substring assim!
 	
-	//return (pCur != NULL && pCur->isLeaf);	//considera somente string inteira
+	return (pCur != NULL && pCur->isLeaf );	//considera somente string inteira
 }
 int main(){
 
   	TrieNode *dic = getNode();
-  	
 	vector<string> tofind;
 
-	char op[5];
-	char contact[22];
+	char contact[60];
 	
     int n;
     cin >> n;
     
-	int k=0; //to control matrix tofind
-    
     for(int a0 = 0; a0 < n; a0++){
-        cin >> op >> contact;
-        if (op[0] = 'a' && op[1] == 'd' && op[2] == 'd'){
-			insertTrie(dic, contact);
-		}
-		else{
-			if (search(dic, contact))
+        cin >> contact;
+        
+		insertTrie(dic, contact);
+    }  
+    for(int a0 = 0; a0 < n; a0++){
+	if (search(dic, contact))
 				int oi; //do nothing
 			else
 				cout<<"0\n";
 		}
-    }  
     return 0;
 }
 
