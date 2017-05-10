@@ -14,10 +14,6 @@ struct Player {
     int score;
 }; 
 
-bool myf (string a, string b) { return (a < b); } 
-
-bool myoptf (Player a, Player b)	{ return (a.name < b.name); } 
-
 bool myopts (Player a, Player b){ 
 	   if (a.score != b.score)
         return (a.score > b.score); 
