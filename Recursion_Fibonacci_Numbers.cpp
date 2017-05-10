@@ -4,7 +4,7 @@ Link: https://www.hackerrank.com/challenges/ctci-fibonacci-numbers
 Coder: taniadr // https://github.com/taniadr/hackerrank
 */
 #include <iostream>
-
+#include <time.h>
 using namespace std;
 
 int fibonacci(int n) {
@@ -17,9 +17,20 @@ int fibonacci(int n) {
     return fibonacci(n-1)+fibonacci(n-2);
 
 }
-int main() {
-    int n;
+int main()
+{
+    clock_t t1,t2;
+    t1=clock();
+    //code goes here
+     int n;
     cin >> n;
-    cout << fibonacci(n);
+    cout << fibonacci(n)<<endl;
+    
+    t2=clock();
+    float diff ((float)t2-(float)t1);
+    cout<<diff<<endl;
+    
+	system ("pause");
     return 0;
+    
 }

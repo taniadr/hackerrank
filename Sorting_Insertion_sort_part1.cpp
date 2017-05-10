@@ -22,20 +22,20 @@ void insertionSort(vector <int>  ar) {
 
     int var = ar.back();
     int i;
-    for (i = ar.size()-2; i>0; i--){
+    for (i = ar.size()-2; i>=0; i--){
         if (ar[i] > var){
             ar[i+1] = ar[i];
-        
-        for (auto& x: ar)	//print the elements to show the swap made above
-            cout<<x<<' ';
+            for (auto& x: ar)
+                cout<<x<<' ';
+            cout<<endl;
         }
-        cout<<endl;
-        ar[i] = var;
+        else {
+            ar[i+1] = var;
+        }
     }
     for (auto& x: ar)	//print the final sorted array
         cout<<x<<' ';
-    
-    //cout<<endl;
+    cout<<endl;
 }
 int main(void) {
     vector <int>  _ar;

@@ -14,28 +14,23 @@ class Node {
 
 */
 
-    int n = 0;
-    void postOrder(Node *root){    
-        if (root == NULL)
-            return;
-        postOrder(root->left);
-         n++;
-        postOrder(root->right);
-    }
+//Estratégia: Faz um postOrder em cada branch (esquerdo e direito)
+//dentro do MESMO FUCKING METODO. É recursivo, nao vai dar erro.
+//Como o peso da raíz é 0, quando chegar numa folha, retorna -1 para
+//retirar o peso adicional da raiz!
 
-    int height(Node* root) {
-        int a,b;
-        if (root == NULL)
-            return 0;
-        else{
-            postOrder(root->left);
-            a = n;
-            n = 0;
-            postOrder(root->right);
-            b = n;
-        }
-         a = max(a,b);
-        return a-1;        
-    }
-  
+ int height(Node* root) {
+        if (root == NULL) 
+            return -1;
+        else
+       {
+           int lDepth = height(root->left);
+           int rDepth = height(root->right);
+
+           if (lDepth > rDepth) 
+               return(lDepth+1);
+           else return(rDepth+1);
+       }
+    } 
+
 
