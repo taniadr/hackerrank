@@ -3,6 +3,9 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <algorithm>
+#include <map>
+#include <string>
 
 using namespace std;
 
@@ -11,16 +14,39 @@ struct Player {
     int score;
 }; 
 
+bool myf (string a, string b) { return (a < b); } 
+
+bool myoptf (Player a, Player b)	{ return (a.name < b.name); } 
+
+bool myopts (Player a, Player b){ 
+	   if (a.score != b.score)
+        return (a.score > b.score); 
+        else return a.name < b.name;
+} 
+
+bool compare(Player a, Player b){
+	
+	if (a.name == b.name)
+		return (a.score > b.score);
+	else
+		return (a.name < b.name );
+	
+}
+
+
 vector<Player> comparator(vector<Player> players) {
     
     int tam = players.size();
     vector<Player> s1(tam);
-    
-	for (int i=0; i<tam; i++){
-    	
-		s1[i].push_back()->score
-    	
-	}
+	map<string, int> rank;
+
+	sort(players.begin(), players.end(), compare);	 
+    sort(players.begin(), players.end(), myopts); 	
+	
+	for (auto& x: players )
+		cout<< x.name <<" "<< x.score<<endl;
+   	
+	return s1=players;
 }
 
 int main() {
@@ -39,9 +65,7 @@ int main() {
     }
     
     vector<Player > answer = comparator(players);
-    for(int i = 0; i < answer.size(); i++) {
-        cout << answer[i].name << " " << answer[i].score << endl;
-    }
+
     return 0;
 }
 
