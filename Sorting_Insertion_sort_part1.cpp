@@ -25,14 +25,15 @@ void insertionSort(vector <int>  ar) {
     for (i = ar.size()-2; i>=0; i--){
         if (ar[i] > var){
             ar[i+1] = ar[i];
-            for (auto& x: ar)
+            for (auto& x: ar)	//só para mostrar as movimentações
                 cout<<x<<' ';
             cout<<endl;
         }
-        else {
-            ar[i+1] = var;
+        else {         
+            break;  //achou a posicao
         }
     }
+    ar[i+1] = var;
     for (auto& x: ar)	//print the final sorted array
         cout<<x<<' ';
     cout<<endl;

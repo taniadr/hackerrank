@@ -3,15 +3,7 @@ Level: Easy
 Link: https://www.hackerrank.com/challenges/merge-two-sorted-linked-lists
 Coder: taniadr // https://github.com/taniadr/hackerrank
 */
-/*
-  Merge two sorted lists A and B as one linked list
-  Node is defined as 
-  struct Node
-  {
-     int data;
-     struct Node *next;
-  }
-*/
+
 /*
   Merge two sorted lists A and B as one linked list
   Node is defined as 
@@ -26,29 +18,34 @@ Coder: taniadr // https://github.com/taniadr/hackerrank
 
 Node* MergeLists(Node *headA, Node* headB)
 {
-   Node *a, *b, *nhead, *prev;
-   a = headA;
-   b = headB;
+  
+    if (headA == NULL) return headB;
+    if (headB == NULL) return headA;
     
-    if (a == NULL ) return headB;
+    Node *nhead = new Node();
+    vector<int> temp(1);
+    //temp.assign(1);
     
-    if (b == NULL) return headA;
-    
-  	while (a->next != NULL){
-  		prev = a;
-  		a = a->next
-  		if (b != NULL && a!= NULL){
-  			if (b->data < a->data )
-  			{
-				  prev->next = new Node;
-				  prev->data = b->data;
-				  prev->next = a;
-  				
-			  }
-		  }
-  		
-	  }
-    return a;
+    while(headA != NULL){
+        temp.push_back(headA->data);
+        headA = headA->next;
+    }
+    while(headB != NULL){
+        temp.push_back(headB->data);
+        headB = headB->next;
+    }
+    sort(temp.begin(),temp.end());
+    Node *save = nhead;
+   
+    nhead->data = temp[1];
+    for (int i=2; i < temp.size(); i++)
+    {
+        nhead->next = new Node();
+        nhead->next->data = temp[i];
+        nhead = nhead->next;
+    }
+
+    return save;
     
 }
 
